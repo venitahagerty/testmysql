@@ -36,7 +36,7 @@ jobs:
           pip install pandas
           pip install pymysql
           pip install lxml
-          ls -l /home/runner/work/testmysql/testmysql
+          ls -l /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql
       - name: python command
         run: |
           import platform
