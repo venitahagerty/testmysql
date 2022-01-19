@@ -50,4 +50,9 @@ jobs:
           import sys
           import os
           conn = pymysql.connect(host='localhost',port=3306,user='root',passwd='root',db='mv_ci')
+          cur = conn.cursor()
+          cur.execute('select database();')
+          print(cur.fetchall())
+          cur.execute('select count(*) from instance_info;')
+          print(cur.fetchall())
         shell: python
