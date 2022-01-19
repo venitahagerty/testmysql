@@ -37,6 +37,8 @@ jobs:
           pip install pymysql
           pip install lxml
           ls -l /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql
+      - name: load schema
+        run: mysql -uroot -proot mv_ci < /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql
       - name: python command
         run: |
           import platform
@@ -58,7 +60,6 @@ jobs:
           print(cur.fetchall())
           cur.execute('show databases;')
           print(cur.fetchall())
-          cur.execute('source /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql')
           cur.execute('show tables;')
           print(cur.fetchall())
         shell: python
