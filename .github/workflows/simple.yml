@@ -34,7 +34,6 @@ jobs:
           pip install pandas
           pip install pymysql
           pip install lxml
-          cd sql
           ls -l
       - name: python command
         run: |
