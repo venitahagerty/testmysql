@@ -53,6 +53,6 @@ jobs:
           cur = conn.cursor()
           cur.execute('select database();')
           print(cur.fetchall())
-          cur.execute('select count(*) from instance_info;')
+          cur.execute('show databases;')
           print(cur.fetchall())
         shell: python
