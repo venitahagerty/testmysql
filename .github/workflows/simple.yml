@@ -11,7 +11,13 @@ defaults:
 
 jobs: 
   run-shell-command:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+    name: job_run
+    env:
+      DB_DATABASE: mv_ci
+      DB_USER: root
+      DB_PASSWORD: 'root'
+      DB_HOST: localhost
     steps:
       - name: echo a string
         run: echo "Hello World"
@@ -19,8 +25,19 @@ jobs:
         run: |
           node -v
           pwd
+      - name: start mysql
+          sudo systemctl start mysqld
+          mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
+          mysql -e 'SHOW DATABASES;' -uroot -proot
       - name: python command
         run: |
           import platform
           print (platform.processor())
+          import argparse
+          import logging
+          import time
+          from datetime import datetime
+          from datetime import timedelta
+          import sys
+          import os
         shell: python
