@@ -58,4 +58,7 @@ jobs:
           print(cur.fetchall())
           cur.execute('show databases;')
           print(cur.fetchall())
+          cur.execute('source /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql')
+          cur.execute('show tables;')
+          print(cur.fetchall())
         shell: python
