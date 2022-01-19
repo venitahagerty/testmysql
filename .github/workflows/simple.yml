@@ -39,6 +39,10 @@ jobs:
           import time
           from datetime import datetime
           from datetime import timedelta
+          import pymysql
+          import numpy
+          import pandas
+          import lxml
           import sys
           import os
         shell: python
