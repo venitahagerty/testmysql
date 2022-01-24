@@ -20,11 +20,14 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=3
 
     steps:
+      - name: shutdown ubuntu mysql
+        run: sudo service mysql stop
+        
       - uses: actions/checkout@v1      
 
       - name: Test
         run: |
-          sudo systemctl start mariadb
+          sudo systemctl start mysql
           mysql -V
           mysql -e 'SELECT VERSION();' -uroot -proot
           mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
