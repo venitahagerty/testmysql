@@ -13,11 +13,9 @@ jobs:
       mariadb:
         image: mariadb:10.1
         ports:
-          - 3306:3306
+          - 3306/tcp
         env:
           MYSQL_DATABASE: mv_ci
-          MYSQL_USER: root
-          MYSQL_PASSWORD: 'root'
           MYSQL_ROOT_PASSWORD: 'root'
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
 
@@ -26,18 +24,16 @@ jobs:
 
       - name: Verify MariaDB connection
         env:
-          PORT: 3306
-          MYSQL_PORT: 3306
+          MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
           MYSQL_HOST: localhost
         run: |
-          while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
+          while ! mysqladmin ping -h"127.0.0.1" -P"$MYSQL_PORT" --silent; do
             sleep 1
           done          
 
       - name: Test
         env:
-          PORT: 3306
-          MYSQL_PORT: 3306
+          MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
           MYSQL_HOST: localhost
         run: |
           mysql -V
