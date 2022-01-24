@@ -15,9 +15,10 @@ jobs:
         ports:
           - 3306
         env:
-          DB_DATABASE: mv_ci
-          DB_USER: root
-          DB_PASSWORD: 'root'
+          MYSQL_DATABASE: mv_ci
+          MYSQL_USER: root
+          MYSQL_PASSWORD: 'root'
+          MYSQL_ROOT_PASSWORD: 'root'
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
     steps:
