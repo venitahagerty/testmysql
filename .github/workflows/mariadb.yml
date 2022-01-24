@@ -12,22 +12,16 @@ jobs:
     services:
       mariadb:
         image: mariadb:10.1
-        ports:
-          - 3306/tcp
         env:
           MYSQL_DATABASE: mv_ci
           MYSQL_ROOT_PASSWORD: 'root'
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=3
 
-    steps:
-      - name: shutdown ubuntu mysql
-        run: sudo service mysql stop
-        
-      - uses: actions/checkout@v1      
+    steps:     
+      - uses: actions/checkout@v2     
 
       - name: Test
         run: |
-          sudo systemctl start mysql
           mysql -V
           mysql -e 'SELECT VERSION();' -uroot -proot
           mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
