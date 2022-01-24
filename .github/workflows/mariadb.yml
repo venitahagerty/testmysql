@@ -2,6 +2,7 @@ name: Test with Mariadb
 
 on:
   push:
+      branches: [rrfs_ci_simple]
   workflow_dispatch:
 
 
