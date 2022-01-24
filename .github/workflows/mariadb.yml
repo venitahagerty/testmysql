@@ -18,7 +18,6 @@ jobs:
           DB_DATABASE: mv_ci
           DB_USER: root
           DB_PASSWORD: 'root'
-          DB_HOST: localhost
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
     steps:
