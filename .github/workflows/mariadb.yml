@@ -34,7 +34,6 @@ jobs:
 
       - name: Test
         run: |
-          sudo systemctl start mysql
           mysql -V
           mysql -e 'SELECT VERSION();' -uroot -proot
           mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
