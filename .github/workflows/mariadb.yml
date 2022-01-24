@@ -13,7 +13,7 @@ jobs:
       mariadb:
         image: mariadb:10.1
         ports:
-          - 3306/tcp
+          - 3306:3306
         env:
           MYSQL_DATABASE: mv_ci
           MYSQL_USER: root
@@ -26,7 +26,8 @@ jobs:
 
       - name: Verify MariaDB connection
         env:
-          PORT: ${{ job.services.mariadb.ports[3306] }}
+          PORT: 3306
+          MYSQL_PORT: 3306
         run: |
           while ! mysqladmin ping -h"127.0.0.1" -P"$PORT" --silent; do
             sleep 1
