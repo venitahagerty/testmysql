@@ -35,8 +35,7 @@ jobs:
           mysql -e 'SELECT VERSION();' -uroot -proot
           mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
           mysql -e 'SHOW DATABASES;' -uroot -proot
-          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlt.sql;'  -uroot -proot mv_ci
-          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlb.sql;'  -uroot -proot mv_ci
+          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql;'  -uroot -proot mv_ci
       - name: multiline script
         run: |
           node -v
