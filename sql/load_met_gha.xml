@@ -21,7 +21,7 @@
 
 	<load_stat>true</load_stat>
 	<load_mode>true</load_mode>
-  <load_mtd>true</load_mode>
+        <load_mtd>true</load_mtd>
 	<load_mpr>false</load_mpr>
 	<load_orank>false</load_orank>
 
