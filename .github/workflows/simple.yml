@@ -103,3 +103,4 @@ jobs:
         run: |
           cd /home/runner/work/testmysql/testmysql/devpycode/METdatadb/METdbLoad/ush
           python met_db_load.py /home/runner/work/testmysql/testmysql/sql/load_met_gha.xml
+          mysql -e 'SHOW TABLE STATUS WHERE rows > 0;'  -uroot -proot mv_ci
