@@ -27,6 +27,10 @@ jobs:
       - name: Test
         run: |
           mysql -V
+          which mysql
+          which mariadb
+          systemctl status mysql
+          systemctl status mariadb
           sudo mysql -e -hmariadb 'SELECT VERSION();' -uroot -proot
           sudo mysql -e -hmariadb 'CREATE DATABASE mv_ci;' -uroot -proot
           mysql -e -hmariadb 'SHOW DATABASES;' -uroot -proot
