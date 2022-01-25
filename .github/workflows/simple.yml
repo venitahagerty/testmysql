@@ -88,4 +88,6 @@ jobs:
           cd metdata
           mv ../m91.tgz .
           tar -xvf m91.tgz
+          cd met_out
           ls -l
+          pwd
