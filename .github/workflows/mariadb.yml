@@ -30,8 +30,8 @@ jobs:
           mysql -V
           which mysql
           systemctl status mysql
-          sudo mysql -e -hmariadb 'SELECT VERSION();' -uroot -proot
-          sudo mysql -e -hmariadb 'CREATE DATABASE mv_ci;' -uroot -proot
-          mysql -e -hmariadb 'SHOW DATABASES;' -uroot -proot
-          mysql -e -hmariadb 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlt.sql;'  -uroot -proot mv_ci
-          mysql -e -hmariadb 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlb.sql;'  -uroot -proot mv_ci
+          sudo mysql -hmariadb -e 'SELECT VERSION();' -uroot -proot
+          sudo mysql -hmariadb -e 'CREATE DATABASE mv_ci;' -uroot -proot
+          mysql -hmariadb -e 'SHOW DATABASES;' -uroot -proot
+          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlt.sql;'  -uroot -proot mv_ci
+          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlb.sql;'  -uroot -proot mv_ci
