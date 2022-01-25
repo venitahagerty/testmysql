@@ -51,9 +51,7 @@ jobs:
         run: |
           which python
           which python3
-          ls -l /usr/bin
-          ls -l ${pythonLocation}/bin
-          sudo update-alternatives --install /usr/bin/python python ${pythonLocation}/bin/python3 10
+          sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
       - name: python command
         run: |
           import sys
