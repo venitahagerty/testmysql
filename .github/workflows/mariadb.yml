@@ -13,6 +13,8 @@ jobs:
     services:
       mariadb:
         image: mariadb:10.1
+        ports:
+          - '8888:3306'
         env:
           MYSQL_DATABASE: mv_ci
           MYSQL_ROOT_PASSWORD: 'root'
@@ -24,8 +26,8 @@ jobs:
       - name: Test
         run: |
           mysql -V
-          mysql -e 'SELECT VERSION();' -uroot -proot
-          mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
-          mysql -e 'SHOW DATABASES;' -uroot -proot
-          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlt.sql;'  -uroot -proot mv_ci
-          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlb.sql;'  -uroot -proot mv_ci
+          mysql -e --host='127.0.0.1' --port 8888 'SELECT VERSION();' -uroot -proot
+          mysql -e --host='127.0.0.1' --port 8888 'CREATE DATABASE mv_ci;' -uroot -proot
+          mysql -e --host='127.0.0.1' --port 8888 'SHOW DATABASES;' -uroot -proot
+          mysql -e --host='127.0.0.1' --port 8888 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlt.sql;'  -uroot -proot mv_ci
+          mysql -e --host='127.0.0.1' --port 8888 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysqlb.sql;'  -uroot -proot mv_ci
