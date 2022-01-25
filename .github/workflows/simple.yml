@@ -26,8 +26,12 @@ jobs:
       - name: start mysql
         run: |
           sudo systemctl start mysql
+          sudo apt update
+          sudo apt install python3
+          sudo apt install python3-pip
           mysql -V
-          python -V
+          python3 -V
+          pip3 --version
           mysql -e 'SELECT VERSION();' -uroot -proot
           mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
           mysql -e 'SHOW DATABASES;' -uroot -proot
@@ -37,10 +41,10 @@ jobs:
         run: |
           node -v
           pwd
-          pip install numpy
-          pip install pandas
-          pip install pymysql
-          pip install lxml
+          pip3 install numpy
+          pip3 install pandas
+          pip3 install pymysql
+          pip3 install lxml
           ls -l /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql
       - name: python command
         run: |
