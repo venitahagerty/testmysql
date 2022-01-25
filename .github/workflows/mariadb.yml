@@ -26,6 +26,7 @@ jobs:
 
       - name: Test
         run: |
+          sudo mysql start
           mysql -V
           which mysql
           systemctl status mysql
