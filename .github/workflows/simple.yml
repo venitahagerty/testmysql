@@ -46,8 +46,14 @@ jobs:
           pip3 install pymysql
           pip3 install lxml
           ls -l /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql
+      - name: change default
+        shell: bash
+        run: |
+          sudo update-alternatives --install /usr/bin/python python ${pythonLocation}/bin/python3.8 10
       - name: python command
         run: |
+          import sys
+          print(sys.version)
           import platform
           print (platform.processor())
           import argparse
