@@ -78,3 +78,14 @@ jobs:
           cur.execute('show tables;')
           print(cur.fetchall())
         shell: python
+      - name: get data
+        shell: bash
+        run: |
+          pwd
+          curl 'https://dtcenter.ucar.edu/dfiles/code/METplus/METdatadb/sample_data-met_out_v9.1.tgz' -o m91.tgz
+          ls -l
+          mkdir metdata
+          cd metdata
+          mv ../m91.tgz .
+          tar -xvf m91.tgz
+          ls -l
