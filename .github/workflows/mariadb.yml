@@ -26,8 +26,6 @@ jobs:
 
       - name: Test
         run: |
-          sudo apt-get install -y mysql-client
-          mysqladmin ping
           mysql -V
           mysql -e -hmariadb 'SELECT VERSION();' -uroot -proot
           mysql -e -hmariadb 'CREATE DATABASE mv_ci;' -uroot -proot
