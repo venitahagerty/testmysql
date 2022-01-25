@@ -98,3 +98,8 @@ jobs:
           cd met_out
           ls -l
           pwd
+      - name: run METdbload
+        shell: bash
+        run: |
+          cd /home/runner/work/testmysql/testmysql/devpycode/METdatadb/METdbLoad/ush
+          python met_db_load.py /home/runner/work/testmysql/testmysql/sql/load_met_gha.xml
