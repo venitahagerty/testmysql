@@ -19,7 +19,7 @@ jobs:
       DB_PASSWORD: 'root'
       DB_HOST: localhost
     steps:
-      - name: check out code
+      - name: check out ci code
         uses: actions/checkout@main
       - name: start mysql
         run: |
@@ -28,34 +28,28 @@ jobs:
           python3 -V
           pip3 --version
           mysql -e 'SELECT VERSION();' -uroot -proot
-          mysql -e 'CREATE DATABASE mv_ci;' -uroot -proot
-          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql;'  -uroot -proot mv_ci
+          mysql -e 'CREATE DATABASE mv_ci_prod;' -uroot -proot
+          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql;'  -uroot -proot mv_ci_prod
+          mysql -e 'CREATE DATABASE mv_ci_new;' -uroot -proot
+          mysql -e 'SOURCE /home/runner/work/testmysql/testmysql/sql/mv_mysql.sql;'  -uroot -proot mv_ci_new
       - name: multiline script
         run: |
           pip3 install numpy
           pip3 install pandas
           pip3 install pymysql
           pip3 install lxml
-      - name: change default
+      - name: change default python to python 3
         shell: bash
         run: |
           which python3
           sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 10
       - name: python command
         run: |
-          import sys
-          print(sys.version)
-          import argparse
-          import logging
-          import time
-          from datetime import datetime
-          from datetime import timedelta
           import pymysql
           import numpy
           import pandas
           import lxml
-          import os
-          conn = pymysql.connect(host='localhost',port=3306,user='root',passwd='root',db='mv_ci')
+          conn = pymysql.connect(host='localhost',port=3306,user='root',passwd='root',db='mv_ci_prod')
           cur = conn.cursor()
           cur.execute('select database();')
           print(cur.fetchall())
@@ -70,15 +64,17 @@ jobs:
           git clone -b develop https://github.com/dtcenter/METdatadb.git
           pwd
           ls -l
+          mkdir newpycode
+          cd newpycode
+          git clone -b feature_68_distinguish https://github.com/dtcenter/METdatadb.git
+          pwd
+          ls -l
       - name: get data
         shell: bash
         run: |
-          pwd
-          curl 'https://dtcenter.ucar.edu/dfiles/code/METplus/METdatadb/sample_data-met_out_v9.1.tgz' -o m91.tgz
-          ls -l
           mkdir metdata
           cd metdata
-          mv ../m91.tgz .
+          curl 'https://dtcenter.ucar.edu/dfiles/code/METplus/METdatadb/sample_data-met_out_v9.1.tgz' -o m91.tgz
           tar -xvf m91.tgz
           cd met_out
           ls -l
