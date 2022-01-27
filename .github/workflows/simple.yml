@@ -64,6 +64,7 @@ jobs:
           git clone -b develop https://github.com/dtcenter/METdatadb.git
           pwd
           ls -l
+          cd ..
           mkdir newpycode
           cd newpycode
           git clone -b feature_68_distinguish https://github.com/dtcenter/METdatadb.git
