@@ -19,13 +19,13 @@ import pymysql
 # *** Connect to a "production/old" database
 DB2 = 'mv_ci_prod'
 
-conn2 = pymysql.connect(read_default_file="~/gha.cnf", db=DB2)
+conn2 = pymysql.connect(read_default_file="/home/runner/work/testmysql/testmysql/sql/gha.cnf", db=DB2)
 cur2 = conn2.cursor()
 
 # *** Connect to a "test/new" database
 DB3 = 'mv_ci_new'
 
-conn3 = pymysql.connect(read_default_file="~/gha.cnf", db=DB3)
+conn3 = pymysql.connect(read_default_file="/home/runner/work/testmysql/testmysql/sql/gha.cnf", db=DB3)
 cur3 = conn3.cursor()
 
 
