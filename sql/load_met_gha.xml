@@ -2,7 +2,7 @@
   <connection>
     <management_system>mysql</management_system>
     <host>localhost:3306</host>
-    <database>mv_ci</database>
+    <database>mv_ci_prod</database>
     <user>root</user>
     <password>root</password>
   </connection>
