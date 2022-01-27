@@ -92,3 +92,6 @@ jobs:
           cd /home/runner/work/testmysql/testmysql/newpycode/METdatadb/METdbLoad/ush
           python met_db_load.py /home/runner/work/testmysql/testmysql/sql/load_met_gha_new.xml
           mysql -e 'SHOW TABLE STATUS WHERE rows > 0;'  -uroot -proot mv_ci_new
+      - name: run test_tables to compare tables in 2 databases
+        shell: bash
+        run: python /home/runner/work/testmysql/testmysql/sql/test_tables.py
