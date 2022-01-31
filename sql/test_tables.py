@@ -202,6 +202,10 @@ for ltype in vline_types:
 
     # get the name of matching line data table
     ptype = ltype.split('_')[0]
+    
+    field_counter = 'i_value'
+    if ltype == "mctc_cnt":
+        field_counter = 'i_value, j_value'
 
     # rows can be created in different orders - match by data file
     q_vline = 'SELECT line_data_' + ltype + \
@@ -212,7 +216,7 @@ for ltype in vline_types:
               'line_data_' + ptype + '.line_data_id = line_data_' + \
               ltype + '.line_data_id ' + \
               ' ORDER BY filename, line_num, line_data_' + ltype + \
-              '.line_data_id, i_value limit ' + \
+              '.line_data_id, ' + field_counter + ' limit ' + \
               str(QUERY_COUNT) + ';'
 
     # show row counts
