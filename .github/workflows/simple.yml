@@ -67,7 +67,7 @@ jobs:
           cd ..
           mkdir newpycode
           cd newpycode
-          git clone -b feature_68_distinguish https://github.com/dtcenter/METdatadb.git
+          git clone -b feature_70_obs_rank https://github.com/dtcenter/METdatadb.git
           pwd
           ls -l
       - name: get data
