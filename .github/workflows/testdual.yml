@@ -1,0 +1,34 @@
+
+   
+name: Shell Commands
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash -leo pipefail {0}
+
+jobs: 
+  run-shell-command:
+    runs-on: ubuntu-18.04
+    name: job_run
+    steps:
+      - name: check out headnew code
+        uses: actions/checkout@main
+        with:
+          path: headnew
+          ref: ${{github.event.pull_request.head.ref}}
+      - name: check out baseold code
+        uses: actions/checkout@main
+        with:
+          path: baseold
+          ref: ${{github.event.pull_request.base.ref}}
+      - name: cat headnew
+        shell: bash
+        run: |
+          pwd
+          ls -l
+          cat baseold/sql/flag.txt
+          cat headnew/sql/flag.txt
